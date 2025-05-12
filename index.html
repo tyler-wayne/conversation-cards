@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM Conversation Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f9fc;
+            text-align: center;
+        }
+
+        #question {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            padding: 15px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            #question {
+                font-size: 1.2rem;
+            }
+            button {
+                width: 100%;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="question">Tap the button to start the conversation!</div>
+    <button onclick="showRandomQuestion()">Next Question</button>
+
+    <script>
+        const questions = [
+            "What's a product decision you made that you're really proud of?",
+            "If you had unlimited resources, what would you build (your own product/business or at Walmart)?",
+            "What’s the weirdest/most surprising piece of user feedback you’ve ever received?",
+            "What's the most interesting insight you’ve learned from working with Walmart?",
+            "If you were a product in a Walmart aisle, which one would you be and why?",
+            "How does working on a product at Walmart scale challenge your usual approach?",
+            "What was your first job ever, and what did it teach you about product work?",
+            "What’s your favorite PM meme — and why is it painfully true?",
+            "What’s your secret productivity hack (or guilty work habit)?",
+            "What's one soft skill that makes you a better PM?",
+            "What’s one mistake that taught you something important?",
+            "What’s your superpower outside of work?",
+            "What motivates you when work gets overwhelming?",
+            "What has surprised you the most (good and bad) about working with Walmart?",
+            "What's something that you're currently very grateful for?",
+            "What do you think separates good products from great products?",
+            "What was the last memorable trip or experience you had? What made it so memorable?"
+        ];
+
+        function showRandomQuestion() {
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            document.getElementById('question').innerText = questions[randomIndex];
+        }
+    </script>
+</body>
+</html>
