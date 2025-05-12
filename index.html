@@ -51,10 +51,10 @@
 </head>
 <body>
     <div id="question">Tap the button to start the conversation!</div>
-    <button onclick="showRandomQuestion()">Next Question</button>
+    <button id="nextBtn">Next Question</button>
 
     <script>
-        const questions = [
+        const originalQuestions = [
             "What's a product decision you made that you're really proud of?",
             "If you had unlimited resources, what would you build (your own product/business or at Walmart)?",
             "What’s the weirdest/most surprising piece of user feedback you’ve ever received?",
@@ -74,10 +74,35 @@
             "What was the last memorable trip or experience you had? What made it so memorable?"
         ];
 
-        function showRandomQuestion() {
-            const randomIndex = Math.floor(Math.random() * questions.length);
-            document.getElementById('question').innerText = questions[randomIndex];
+        let questions = [];
+
+        const questionDiv = document.getElementById('question');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function resetQuestions() {
+            questions = [...originalQuestions];
+            questionDiv.innerText = "Tap the button to start the conversation!";
+            nextBtn.innerText = 'Next Question';
+            nextBtn.onclick = showRandomQuestion;
         }
+
+        function showRandomQuestion() {
+            if (questions.length === 0) {
+                questionDiv.innerText = "🎉 Congrats - you've gone through all the questions! 🎉";
+                nextBtn.innerText = 'Play again';
+                nextBtn.onclick = resetQuestions;
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            const selectedQuestion = questions.splice(randomIndex, 1);
+            questionDiv.innerText = selectedQuestion;
+        }
+
+        nextBtn.onclick = showRandomQuestion;
+
+        // Initialize questions on first load
+        resetQuestions();
     </script>
 </body>
 </html>
